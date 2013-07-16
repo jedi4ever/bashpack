@@ -99,17 +99,21 @@ In addition to that, the bashpack also responds to some internal commands (prefi
     # Treat the bashpack as a tar file
     ./bashpack.run --bashpack-tar -tvf
 
-## Inspired by
+## Tips
 
-Makeself - <https://github.com/megastep/makeself>
+- if you like to create a '.deb', '.rpm' etc.. package - consider using [fpm](https://github.com/jordansissel/fpm)
+- to speed up execution of your bashpack.run file, you need trim down the files that are included. You can do this by adding paths/patterns to the exclude
+- also if you do this from your working directory and you did not specify ``--production`` to your ``npm install``, your node_modules will be larger than necessary. Consider running this on a clean projectdir with ``--production``
 
-Tweaks made:
-- fix for md5 to work
-- prefix the archive options (info, list, check) with --bashpack-
-- pass all arguments directly to script that is started
 
 ## Limitations
 
+### Dependencies
+
+- to pack a node binary in the bashpack file, it needs to be available in your path , or specified by hand with --node-binary option
+- the bashpack.run file uses uuencode, bzip2 , tar . These need to be in your path when running the bashpack.run file
+
+### Native modules
 When the bashpack is created, it will include the '.node' (native modules) for the architecture it is created on.
 There is currently no good way of providing multi-architecture node/native modules.
 
@@ -119,7 +123,6 @@ Also it can not guess the additional shared libs your application was compiled a
 
 ## Todos/Ideas
 
-- provide option to specify tempdir
 - report error if bashpack is run on the wrong architecture
 - integrate .bashpack-ignore in package.json
 - ability to pass nodejs options
@@ -137,4 +140,13 @@ Also it can not guess the additional shared libs your application was compiled a
 - auto-download nodejs binary/arch/version/etc to be included
 
 - multi architecture bashpacks : by including multiple nodejs binaries in the bashpack and selecting the correct one
+
+## Inspired by
+
+Makeself - <https://github.com/megastep/makeself>
+
+Tweaks made:
+- fix for md5 to work
+- prefix the archive options (info, list, check) with --bashpack-
+- pass all arguments directly to script that is started
 
