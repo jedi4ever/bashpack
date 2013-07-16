@@ -11,27 +11,26 @@ It will include the nodejs binary to be executed
 
 ## CLI options
 
-    $ ./bin/bashpack build --help
+    $ ./bin/bashpack  build --help
 
-      Usage: build [options] <projectdir>,<startscript>
+    Usage: build [options] <projectdir>,<startscript>
 
-      Options:
+    Options:
 
-        -h, --help                         output usage information
-        --log-level <loglevel>             Set loglevel [info]
-        --log-timestamp                    Enable timestamps in log-output
-        --no-log-colorize                  Disable colors in log-output
-        --no-log-pretty-print              Disable pretty-print log-output
-        -m, --log-mute                     Disable log-output
-        -d, --debug                        Enable debug level
-        -o, --output-file <outputfile>     Outputfile [bashpack.run]
-        -f, --force                        Force overwrite
-        -t, --temp-dir <directory>         Directory to use for tempory [auto-detect from TMP_DIR]
-        -e, --exclude <patterns>           Pattern to exclude ['.git/*']
-        -l, --libs <pattern>               Shared libraries to include []
-        -X, --exclude-file <excludefile>   File that contains the (shell)patterns to exclude
-        -s, --skip-node-include            Don't include a node binary in the bashpack
-        -b, --node-binary <node-filename>  File path to node binary [auto-detect from path]
+      -h, --help                         output usage information
+      --log-level <loglevel>             Set loglevel [info]
+      --log-timestamp                    Enable timestamps in log-output
+      --no-log-colorize                  Disable colors in log-output
+      --no-log-pretty-print              Disable pretty-print log-output
+      -m, --log-mute                     Disable log-output
+      -d, --debug                        Enable debug level
+      -o, --output-file <outputfile>     Outputfile [bashpack.run]
+      -f, --force                        Force overwrite
+      -e, --exclude <patterns>           Pattern to exclude ['.git/*']
+      -l, --libs <pattern>               Shared libraries to include []
+      -X, --exclude-file <excludefile>   File that contains the (shell)patterns to exclude
+      -s, --skip-node-include            Don't include a node binary in the bashpack
+      -b, --node-binary <node-filename>  File path to node binary [auto-detect from path]
 
 By default it includes a node-binary in your bashpack.run file, if you want to avoid that use the --skip-node-include option
 
@@ -72,6 +71,8 @@ This is how we would create a bashpack from the statsd project
     });
 
 ## bashpack run files options
+A bashpack file, is a shell script, with a payload.
+As the payload is bzip2-ed, they are small compared to the node-binary size.
 
 Running a bashpack is simple ``./bashpack.run``.
 All arguments specified will be directly passed to the node startScript
