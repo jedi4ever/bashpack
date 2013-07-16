@@ -3,6 +3,8 @@
 **bashpacker** packs a nodejs project into a single bash file that can be executed without the need to install nodejs or anything else
 It will include the nodejs binary to be executed
 
+[![Build Status](https://travis-ci.org/jedi4ever/bashpack.png?branch=master)](https://travis-ci.org/jedi4ever/bashpack)
+
 ## Installation:
 
     $ npm install bashpack
