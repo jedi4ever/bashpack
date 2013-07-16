@@ -11,6 +11,19 @@ It will include the nodejs binary to be executed
 
 ## CLI options
 
+### Create init file
+    $ ./bin/bashpack init --help
+
+    Usage: init [options] <projectdir>
+
+    Options:
+
+      -h, --help   output usage information
+      -f, --force  Force overwrite
+
+
+### Build a bashpack
+
     $ ./bin/bashpack  build --help
 
     Usage: build [options] <projectdir>,<startscript>
