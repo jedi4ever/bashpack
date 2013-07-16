@@ -20,19 +20,20 @@ program.command('init <projectdir>')
 
 
 program.command('build <projectdir> <startscript>')
-  .option('--log-level <loglevel>','Set loglevel [info]','info')
+  .option('--log-level <loglevel>','Set loglevel [info]')
   .option('--log-timestamp','Enable timestamps in log-output')
   .option('--no-log-colorize','Disable colors in log-output')
   .option('--no-log-pretty-print','Disable pretty-print log-output')
   .option('-m, --log-mute','Disable log-output')
   .option('-d, --debug','Enable debug level')
-  .option('-o, --output-file <outputfile>','Outputfile [bashpack.run]','bashpack.run')
+  .option('-o, --output-file <outputfile>','Outputfile [bashpack.run]')
   .option('-f, --force','Force overwrite')
   .option('-e, --exclude <patterns>', 'Pattern to exclude [\'.git/*\']',list)
   .option('-l, --libs <pattern>', 'Shared libraries to include []',[])
   .option('-X, --exclude-file <excludefile>','File that contains the (shell)patterns to exclude')
   .option('-s, --skip-node-include','Don\'t include a node binary in the bashpack')
   .option('-b, --node-binary <node-filename>','File path to node binary [auto-detect from path]')
+  .option('-c, --config-file <config-filename>','JSON File containing bashpack settings [auto-detect from $projectdir/bashpack.json]')
   .action(function(projectdir,startscript,options) {
     cli.build(projectdir,startscript,options);
     process.exit(0);
