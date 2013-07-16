@@ -1,5 +1,5 @@
 {
-  "outputFile": "bashpack.run"
+  "outputFile": "bashpack.run",
   "exclude": [
     "./.git/*",
     "./tmp/*",
@@ -16,6 +16,6 @@
     ".gitignore",
     "*.run",
     "Makefile",
-    "./test/*",
+    "./test/*"
   ]
 }
