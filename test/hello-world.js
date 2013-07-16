@@ -1,13 +1,30 @@
 describe('BashPack', function () {
 
+  // Packing can take a long time
   this.timeout(4000);
+
+  var outputFile;
+
+  beforeEach(function(done) {
+    outputFile = tempFile.path;
+    done();
+  })
+
+  afterEach(function(done) {
+    // Cleanup our temporary file after creation
+    if (fs.existsSync(outputFile)) {
+      tempFile.unlinkSync();
+    }
+    done();
+  })
+
 
   describe('Hello World', function () {
     it('should return an error if the base directory does not exist', function(done) {
       var bashPack = new BashPack();
       var baseDir = '/nowedontexist';
       var startScript;
-      var opts = {};
+      var opts = { outputFile: outputFile };
 
       bashPack.build(baseDir, startScript, opts, function(err) {
         expect(err).not.to.be(null)
@@ -18,7 +35,7 @@ describe('BashPack', function () {
     it('should return an error if the startScript does not exist', function(done) {
       var bashPack = new BashPack();
       var baseDir = path.join(__dirname,'data','hello-world');
-      var opts = {};
+      var opts = { outputFile: outputFile };
       var startScript;
 
       bashPack.build(baseDir, startScript, opts, function(err) {
@@ -30,7 +47,9 @@ describe('BashPack', function () {
     it('should return an error if the node-binary does not exist', function(done) {
       var bashPack = new BashPack();
       var baseDir = path.join(__dirname,'data','hello-world');
-      var opts = { nodeBinary: '/i-dont-exist'};
+      var opts = { 
+        nodeBinary: '/i-dont-exist',
+        outputFile: outputFile };
       var startScript;
 
       bashPack.build(baseDir, startScript, opts, function(err) {
@@ -40,7 +59,7 @@ describe('BashPack', function () {
     })
 
     it('should not return an error on the hello-world baseDir with startScript ', function(done) {
-      var opts = {};
+      var opts = { outputFile: outputFile };
       var bashPack = new BashPack(opts);
       var baseDir = path.join(__dirname,'data','hello-world');
       var startScript = 'lib/hello.js';
@@ -52,7 +71,7 @@ describe('BashPack', function () {
     })
 
     it('should not return an error on the hello-world baseDir with startScript ', function(done) {
-      var opts = { logLevel: 'info', logMute: true};
+      var opts = { outputFile: outputFile };
       var bashPack = new BashPack(opts);
       var baseDir = path.join(__dirname,'data','hello world');
       var startScript = 'lib/hello me.js';
@@ -64,7 +83,7 @@ describe('BashPack', function () {
     })
 
     it('should not return an error on the hello-world with --skip-node-include', function(done) {
-      var opts = { logLevel: 'info', logMute: true , skipNodeInclude: true };
+      var opts = { outputFile: outputFile, skipNodeInclude: true };
       var bashPack = new BashPack(opts);
       var baseDir = path.join(__dirname,'data','hello-world');
       var startScript = 'lib/hello.js';
