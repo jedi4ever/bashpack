@@ -67,6 +67,14 @@ This is how we would create a bashpack from the statsd project
 
 ## bashpack run files options
 
+Running a bashpack is simple ``./bashpack.run``.
+All arguments specified will be directly passed to the node startScript
+
+In addition to that, the bashpack also responds to some internal commands (prefixed with --bashpack)
+
+    # Show bashpack help
+    ./bashpack.run --bashpack-help
+
     # List all included files
     ./bashpack.run --bashpack-list
 
@@ -74,7 +82,16 @@ This is how we would create a bashpack from the statsd project
     ./bashpack.run --check
 
     # Info on creation
-    ./bashpack.run --info
+    ./bashpack.run --bashpack-info
+
+    # Don't run the script
+    ./bashpack.run --bashpack-noexec
+
+    # Extract in a directory
+    ./bashpack.run --bashpack-target /opt/somedir
+
+    # Treat the bashpack as a tar file
+    ./bashpack.run --bashpack-tar -tvf
 
 ## Inspired by
 
