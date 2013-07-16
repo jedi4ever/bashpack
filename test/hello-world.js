@@ -40,7 +40,7 @@ describe('BashPack', function () {
     })
 
     it('should not return an error on the hello-world baseDir with startScript ', function(done) {
-      var opts = { logLevel: 'info', mute: false};
+      var opts = { logLevel: 'info', logMute: true};
       var bashPack = new BashPack(opts);
       var baseDir = path.join(__dirname,'data','hello world');
       var startScript = 'lib/hello me.js';
