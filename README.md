@@ -49,7 +49,7 @@ This is how we would create a bashpack from the statsd project
     $ npm dedupe
 
     # Create a bashpack config
-    $ bashpack init
+    $ bashpack init .
 
     # Create a bash script 'statsd.run' from 'current dir' and launch 'bin/statsd' on run
     $ bashpack . bin/statsd -o statsd.run
