@@ -1,6 +1,6 @@
 {
   "name": "bashpack",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": false,
   "author": "Patrick Debois <patrick.debois@jedi.be>",
   "description": "packs a nodejs project into a single bash file",
@@ -8,6 +8,9 @@
     "test": "make MOCHA=mocha JSHINT=jshint test"
   },
   "main": "./lib/bashpack.js",
+  "bin": {
+    "bashpack": "./bin/bashpack"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/jedi4ever/bashpack.git"
