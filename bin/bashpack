@@ -7,6 +7,9 @@ var version = require('../lib/version.js');
 
 program.version(version);
 
+function list(val) {
+    return val.split(',');
+}
 
 program.command('init <projectdir>')
   .option('-f, --force','Force overwrite')
@@ -25,7 +28,7 @@ program.command('build <projectdir> <startscript>')
   .option('-d, --debug','Enable debug level')
   .option('-o, --output-file <outputfile>','Outputfile [bashpack.run]','bashpack.run')
   .option('-f, --force','Force overwrite')
-  .option('-e, --exclude <patterns>', 'Pattern to exclude [\'.git/*\']',['.git/*'])
+  .option('-e, --exclude <patterns>', 'Pattern to exclude [\'.git/*\']',list)
   .option('-l, --libs <pattern>', 'Shared libraries to include []',[])
   .option('-X, --exclude-file <excludefile>','File that contains the (shell)patterns to exclude')
   .option('-s, --skip-node-include','Don\'t include a node binary in the bashpack')

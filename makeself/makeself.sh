@@ -100,7 +100,9 @@ MS_Usage()
     echo "                      The label and startup scripts will then be ignored"
     echo "    --current       : Files will be extracted to the current directory."
     echo "                      Implies --notemp."
-    echo "    --exclude       : File that contains the excludes"
+    echo "    --exclude-file  : File that contains the excludes"
+    echo "                      This will be passed to the tarfile"
+    echo "    --exclude       : Pattern that contains the excludes"
     echo "                      This will be passed to the tarfile"
     echo "    --nomd5         : Don't calculate an MD5 for archive"
     echo "    --nocrc         : Don't calculate a CRC for archive"
@@ -130,6 +132,7 @@ COPY=none
 TAR_ARGS=cvf
 HEADER=`dirname $0`/makeself-header.sh
 EXCLUDE=''
+EXCLUDEFILE=''
 
 # LSM file stuff
 LSM_CMD="echo No LSM. >> \"\$archname\""
@@ -178,9 +181,12 @@ do
 	HEADER="$2"
 	shift 2
 	;;
-  --exclude)
+  --exclude-file)
     EXCLUDE="-X $2"
-    #EXCLUDE="--exclude -X $2"
+	shift 2
+	;;
+  --exclude)
+    EXCLUDE="--exclude $2"
 	shift 2
 	;;
 
