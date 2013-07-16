@@ -135,6 +135,11 @@ If your module does not have native module dependencies, you can specify a node 
 
 Also it can not guess the additional shared libs your application was compiled against, so you have to manually specify them.
 
+### Platforms
+
+- any unix-alike , or macosx should work
+- windows is currently not supported
+
 ## Todos/Ideas
 
 - report error if bashpack is run on the wrong architecture
