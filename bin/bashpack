@@ -13,7 +13,7 @@ function list(val) {
 
 program.command('init <projectdir>')
   .option('-f, --force','Force overwrite')
-  .action(function(options) {
+  .action(function(projectdir,options) {
     cli.init(projectdir,options);
     process.exit(0);
   });

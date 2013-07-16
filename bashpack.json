@@ -1,0 +1,21 @@
+{
+  "outputFile": "bashpack.run"
+  "exclude": [
+    "./.git/*",
+    "./tmp/*",
+    "./docs/*",
+    "./doc/*",
+    "./examples/*",
+    "License",
+    "LICENSE",
+    "README.*",
+    "README",
+    "Changelog.md",
+    "CHANGELOG.md",
+    ".travis.yml",
+    ".gitignore",
+    "*.run",
+    "Makefile",
+    "./test/*",
+  ]
+}
