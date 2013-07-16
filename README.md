@@ -1,0 +1,84 @@
+# Bashpacker
+
+**bashpacker** packs a nodejs project into a single bash file that can be executed without the need to install nodejs or anything else
+It will include the nodejs binary to be executed
+
+## Installation:
+
+    $ npm install bashpack
+
+## Sample CLI usage
+
+This is how we would create a bashpack from the statsd project
+
+    # Get a fresh repo
+    $ git clone https://github.com/etsy/statsd.git
+    $ cd statsd
+
+    # Install all dependencies (--production will limit the ones needed for production)
+    $ npm install --production
+
+    # Dedupe the node_modules used by dependencies
+    $ npm dedupe
+
+    # Create a bashpack config
+    $ bashpack init
+
+    # Create a bash script 'statsd.run' from 'current dir' and launch 'bin/statsd' on run
+    $ bashpack . bin/statsd -o statsd.run
+
+    # Now run the bashpack
+    $ ./statsd.run exampleConfig.js
+
+## Sample code usage
+
+    var BashPack = require('bashpack');
+    var bashPack = new BashPack();
+    var baseDir = '.';
+    var startScript = 'bin/statsd';
+
+    bashPack.build(baseDir, startScript, function(err) {
+      if (err) {
+        console.log('error happened:'+ err.message);
+      }
+    });
+
+## Inspired by
+
+Makeself - <https://github.com/megastep/makeself>
+
+Tweaks made:
+- fix for md5 to work
+- prefix the archive options (info, list, check) with --bashpack-
+- pass all arguments directly to script that is started
+
+## Limitations
+
+When the bashpack is created, it will include the '.node' (native modules) for the architecture it is created on.
+There is currently no good way of providing multi-architecture node/native modules.
+
+If your module does not have native module dependencies, you can specify a node file from another architecture to be included
+
+Also it can not guess the additional shared libs your application was compiled against, so you have to manually specify them.
+
+## Todos/Ideas
+
+- provide option to specify tempdir
+- report error if bashpack is run on the wrong architecture
+- integrate .bashpack-ignore in package.json
+- ability to pass nodejs options
+- grunt plugin
+
+- include DYLIBS in bashpack
+
+- guess the startScript from the main in the package.json
+- guess the archive name from the module description
+- bashpackignore syntax to be similar from gitignore & npmignore
+
+- auto-build backfrom from npm (download, install --production, dedupe, bashpack)
+- copy baseDir first and rebuild it from a clean node_modules dir
+
+- auto-download nodejs binary/arch/version/etc to be included
+
+- multi architecture bashpacks : by including multiple nodejs binaries in the bashpack and selecting the correct one
+

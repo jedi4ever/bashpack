@@ -1,0 +1,33 @@
+#!/usr/bin/env node
+// vim: ft=javascript
+
+var program = require('commander');
+var cli = require('../lib/cli.js');
+var version = require('../lib/version.js');
+
+program.version(version);
+
+program.command('build <basedir> <startscript>')
+  .option('--log-level <loglevel>','Loglevel [info]','info')
+  .option('-o, --output-file <outputfile>','Outputfile [bashpack.run]','bashpack.run')
+  .option('-n, --name <name>','Name displayed on run [Bashpacker]','bashpacker')
+  .option('-e, --exclude-file <excludefile','File that contains the paths to exclude')
+  .option('--debug','Enable debug level')
+  .option('--timestamp','Show timestamps in logs')
+  .action(function(basedir,startscript,options) {
+    cli.build(basedir,startscript,options);
+    process.exit(0);
+  });
+
+program.parse(process.argv);
+
+if (!program.args.length) {
+  program.help();
+} else {
+  var subcommands = [ 'build', 'init' ];
+  if (subcommands.indexOf(program.args) < 0) {
+    program.help();
+  }
+}
+
+

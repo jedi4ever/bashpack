@@ -1,0 +1,10 @@
+{
+  "name": "hello-world",
+  "version": "0.0.1",
+  "private": false,
+  "author": "Patrick Debois <patrick.debois@jedi.be>",
+  "license": "MIT",
+  "engine": {
+    "node": ">=0.6"
+  }
+}

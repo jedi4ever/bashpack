@@ -1,0 +1,6 @@
+./.git/*
+./tmp/*
+*.run
+Makefile
+test/*
+tmp/*
