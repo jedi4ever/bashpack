@@ -9,18 +9,19 @@ program.version(version);
 
 program.command('build <basedir> <startscript>')
   .option('--log-level <loglevel>','Set loglevel [info]','info')
-  .option('--log-timestamp','Show timestamps in log entries [false]',false)
-  .option('--log-colorize','Use colors in log output [true]',true)
-  .option('--log-pretty-print','Pretty print [true]',true)
-  .option('-m, --log-mute','Disable ouput')
+  .option('--log-timestamp','Enable timestamps in log-output')
+  .option('--no-log-colorize','Disable colors in log-output')
+  .option('--no-log-pretty-print','Disable pretty-print log-output')
+  .option('-m, --log-mute','Disable log-output')
   .option('-d, --debug','Enable debug level')
   .option('-o, --output-file <outputfile>','Outputfile [bashpack.run]','bashpack.run')
-  .option('--temp-dir <directory>','Directory to use for tempory [auto-detect from TMP_DIR]')
-  .option('-e, --exclude <pattern>', 'Pattern to exclude [\'.git/*\']',['.git/*'])
+  .option('-f, --force','Force overwrite')
+  .option('-t, --temp-dir <directory>','Directory to use for tempory [auto-detect from TMP_DIR]')
+  .option('-e, --exclude <patterns>', 'Pattern to exclude [\'.git/*\']',['.git/*'])
   .option('-l, --libs <pattern>', 'Shared libraries to include []',[])
-  .option('--exclude-file <excludefile','File that contains the (shell)patterns to exclude')
-  .option('--include-node <flag>','Include node binary in the bashpack [true]',true)
-  .option('--node-binary <node-filename>','File path to node binary [auto-detect from path]')
+  .option('-X, --exclude-file <excludefile>','File that contains the (shell)patterns to exclude')
+  .option('-s, --skip-node-include','Don\'t include a node binary in the bashpack')
+  .option('-b, --node-binary <node-filename>','File path to node binary [auto-detect from path]')
   .action(function(basedir,startscript,options) {
     cli.build(basedir,startscript,options);
     process.exit(0);

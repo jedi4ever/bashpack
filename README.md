@@ -7,6 +7,28 @@ It will include the nodejs binary to be executed
 
     $ npm install bashpack
 
+## CLI options
+
+    Usage: build [options] <basedir>,<startscript>
+
+    Options:
+
+      -h, --help                      output usage information
+      --log-level <loglevel>          Set loglevel [info]
+      --log-timestamp                 Show timestamps in log entries [false]
+      --log-colorize                  Use colors in log output [true]
+      --log-pretty-print              Pretty print [true]
+      -m, --log-mute                  Disable ouput
+      -d, --debug                     Enable debug level
+      -o, --output-file <outputfile>  Outputfile [bashpack.run]
+      -f, --force                     Force overwrite
+      --temp-dir <directory>          Directory to use for tempory [auto-detect from TMP_DIR]
+      -e, --exclude <patterns>        Pattern to exclude ['.git/*']
+      -l, --libs <pattern>            Shared libraries to include []
+      --exclude-file <excludefile>    File that contains the (shell)patterns to exclude
+      --include-node <flag>           Include node binary in the bashpack [true]
+      --node-binary <node-filename>   File path to node binary [auto-detect from path]
+
 ## Sample CLI usage
 
 This is how we would create a bashpack from the statsd project
@@ -42,6 +64,17 @@ This is how we would create a bashpack from the statsd project
         console.log('error happened:'+ err.message);
       }
     });
+
+## bashpack run files options
+
+    # List all included files
+    ./bashpack.run --bashpack-list
+
+    # Check integrity of bashpack
+    ./bashpack.run --check
+
+    # Info on creation
+    ./bashpack.run --info
 
 ## Inspired by
 
