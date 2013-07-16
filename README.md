@@ -9,25 +9,29 @@ It will include the nodejs binary to be executed
 
 ## CLI options
 
-    Usage: build [options] <basedir>,<startscript>
+    $ ./bin/bashpack build --help
 
-    Options:
+      Usage: build [options] <projectdir>,<startscript>
 
-      -h, --help                      output usage information
-      --log-level <loglevel>          Set loglevel [info]
-      --log-timestamp                 Show timestamps in log entries [false]
-      --log-colorize                  Use colors in log output [true]
-      --log-pretty-print              Pretty print [true]
-      -m, --log-mute                  Disable ouput
-      -d, --debug                     Enable debug level
-      -o, --output-file <outputfile>  Outputfile [bashpack.run]
-      -f, --force                     Force overwrite
-      --temp-dir <directory>          Directory to use for tempory [auto-detect from TMP_DIR]
-      -e, --exclude <patterns>        Pattern to exclude ['.git/*']
-      -l, --libs <pattern>            Shared libraries to include []
-      --exclude-file <excludefile>    File that contains the (shell)patterns to exclude
-      --include-node <flag>           Include node binary in the bashpack [true]
-      --node-binary <node-filename>   File path to node binary [auto-detect from path]
+      Options:
+
+        -h, --help                         output usage information
+        --log-level <loglevel>             Set loglevel [info]
+        --log-timestamp                    Enable timestamps in log-output
+        --no-log-colorize                  Disable colors in log-output
+        --no-log-pretty-print              Disable pretty-print log-output
+        -m, --log-mute                     Disable log-output
+        -d, --debug                        Enable debug level
+        -o, --output-file <outputfile>     Outputfile [bashpack.run]
+        -f, --force                        Force overwrite
+        -t, --temp-dir <directory>         Directory to use for tempory [auto-detect from TMP_DIR]
+        -e, --exclude <patterns>           Pattern to exclude ['.git/*']
+        -l, --libs <pattern>               Shared libraries to include []
+        -X, --exclude-file <excludefile>   File that contains the (shell)patterns to exclude
+        -s, --skip-node-include            Don't include a node binary in the bashpack
+        -b, --node-binary <node-filename>  File path to node binary [auto-detect from path]
+
+By default it includes a node-binary in your bashpack.run file, if you want to avoid that use the --skip-node-include option
 
 ## Sample CLI usage
 
@@ -56,10 +60,10 @@ This is how we would create a bashpack from the statsd project
 
     var BashPack = require('bashpack');
     var bashPack = new BashPack();
-    var baseDir = '.';
+    var projectDir = '.';
     var startScript = 'bin/statsd';
 
-    bashPack.build(baseDir, startScript, function(err) {
+    bashPack.build(projectDir, startScript, function(err) {
       if (err) {
         console.log('error happened:'+ err.message);
       }
