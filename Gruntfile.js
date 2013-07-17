@@ -5,16 +5,19 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     jshint: {
       // define the files to lint
-      files: ['gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
-      // configure JSHint (documented at http://www.jshint.com/docs/)
-      options: {
-        // more options here if you want to override JSHint defaults
-        globals: {
-          jQuery: true,
-          console: true,
-          module: true
+      src: {
+        files: {
+          src: ['lib/**/*.js', 'test/**/*.js']
+        },
+        options: {
+          node: true
         }
-      }
+      },
+      gruntfile: {
+        files: {
+         src: ['Gruntfile.js']
+        }
+      },
     },
     // Configure a mochaTest task
     mochaTest: {
@@ -36,6 +39,20 @@ module.exports = function(grunt) {
         // output (the quiet option does not suppress this)
         dest: 'coverage.html'
       }
+    },
+
+    watch: {
+        gruntfile: {
+          files: 'Gruntfile.js' ,
+          tasks: ['jshint:gruntfile']
+        },
+        src: {
+          files: ['lib/**/*.js','bin/*','test/**/*.js'],
+          tasks: ['test']
+        },
+        options: {
+          nospawn: false
+        }
     }
   });
 
@@ -43,6 +60,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-mocha-test');
+  grunt.loadNpmTasks('grunt-release');
 
   grunt.registerTask('test', ['jshint','mochaTest']);
 
