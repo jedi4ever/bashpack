@@ -123,7 +123,7 @@ describe('BashPack', function () {
       });
     })
 
-    it('should not fail on a existing --libs ', function(done) {
+    it('should not fail on an existing --libs ', function(done) {
       var baseDir = path.join(__dirname,'data','hello-world');
       var extraLib = path.join(__dirname,'data','lib','dummylib.so');
       var opts = { outputFile: outputFile, skipNodeInclude: true , libs: [ extraLib]};
@@ -135,6 +135,21 @@ describe('BashPack', function () {
         var results = shell.exec(outputFile + ' --bashpack-list');
         expect(results.code).to.be(0);
         expect(results.output).contain('lib/dummylib.so');
+        done();
+      });
+    })
+
+    it('should have hello.js in it\'s output when run for hello-world projec', function(done) {
+      var baseDir = path.join(__dirname,'data','hello-world');
+      var opts = { outputFile: outputFile, skipNodeInclude: true };
+      var bashPack = new BashPack(opts);
+      var startScript = 'lib/hello.js';
+
+      bashPack.build(baseDir, startScript, opts, function(err) {
+        expect(err).to.be(null)
+        var results = shell.exec(outputFile);
+        expect(results.code).to.be(0);
+        expect(results.output).contain(startScript);
         done();
       });
     })
