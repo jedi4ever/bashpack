@@ -7,7 +7,7 @@ module.exports = function(grunt) {
       // define the files to lint
       src: {
         files: {
-          src: ['lib/**/*.js']
+          src: ['lib/**/*.js','bin/bashpack']
         },
         options: {
           node: true,
