@@ -111,5 +111,17 @@ describe('BashPack', function () {
       });
     })
 
+    it('should not fail on a non existing --libs ', function(done) {
+      var opts = { outputFile: outputFile, skipNodeInclude: true , libs: [ '/blabla']};
+      var bashPack = new BashPack(opts);
+      var baseDir = path.join(__dirname,'data','hello-world');
+      var startScript = 'lib/hello.js';
+
+      bashPack.build(baseDir, startScript, opts, function(err) {
+        expect(err).not.to.be(null)
+        done();
+      });
+    })
+
   });
 });
