@@ -1,6 +1,6 @@
 {
   "name": "bashpack",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "private": false,
   "author": "Patrick Debois <patrick.debois@jedi.be>",
   "description": "packs a nodejs project into a single bash file",
