@@ -1,6 +1,6 @@
 {
   "name": "bashpack",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "private": false,
   "author": "Patrick Debois <patrick.debois@jedi.be>",
   "description": "packs a nodejs project into a single bash file",
@@ -38,7 +38,8 @@
     "should": "0.5.1",
     "grunt": "~0.4.1",
     "grunt-contrib-jshint": "~0.6.0",
-    "grunt-contrib-watch": "~0.4.4"
+    "grunt-contrib-watch": "~0.4.4",
+    "grunt-release": "~0.3.5"
   },
   "license": "MIT",
   "engine": {
