@@ -14,6 +14,7 @@ module.exports = function(grunt) {
           curly: true,
           quotmark: 'single',
           unused: true,
+          trailing: true,
           strict: true,
           undef: true
         }
