@@ -7,12 +7,24 @@ module.exports = function(grunt) {
       // define the files to lint
       src: {
         files: {
-          src: ['lib/**/*.js', 'test/**/*.js']
+          src: ['lib/**/*.js']
         },
         options: {
           node: true,
           curly: true,
-          quotmark: 'single'
+          quotmark: 'single',
+          undef: true
+        }
+      },
+      test: {
+        files: {
+          src: ['test/**/*.js']
+        },
+        options: {
+          node: true,
+          curly: true,
+          quotmark: 'single',
+          undef: false
         }
       },
       gruntfile: {

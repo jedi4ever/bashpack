@@ -1,3 +1,11 @@
+var BashPack = require('../lib/bashpack');
+var path = require('path');
+var Tempfile = require('temporary/lib/file');
+var tempFile = new Tempfile();
+var fs = require('fs');
+var shell = require('shelljs');
+var expect = require('expect.js');
+
 describe('BashPack', function () {
 
   // Packing can take a long time
