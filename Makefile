@@ -13,5 +13,13 @@ test: lint $(SRC) ./node_modules
 		--growl \
 		$(TESTS)
 
+test-watch: lint $(SRC) ./node_modules
+	@$(MOCHA) \
+		--require test/common \
+		--reporter $(REPORTER) \
+		-w \
+		--growl \
+		$(TESTS)
+
 lint: $(SRC)
 	@$(JSHINT) $(SRC)
