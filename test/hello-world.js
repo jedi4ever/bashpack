@@ -70,7 +70,7 @@ describe('BashPack', function () {
       });
     })
 
-    it('should not return an error on the hello-world baseDir with startScript ', function(done) {
+    it('should not fail the hello-world baseDir with startScript ', function(done) {
       var opts = { outputFile: outputFile };
       var bashPack = new BashPack(opts);
       var baseDir = path.join(__dirname,'data','hello world');
@@ -82,7 +82,7 @@ describe('BashPack', function () {
       });
     })
 
-    it('should not return an error on the hello-world with --skip-node-include', function(done) {
+    it('should not fail on the hello-world with --skip-node-include', function(done) {
       var opts = { outputFile: outputFile, skipNodeInclude: true };
       var bashPack = new BashPack(opts);
       var baseDir = path.join(__dirname,'data','hello-world');
@@ -111,7 +111,7 @@ describe('BashPack', function () {
       });
     })
 
-    it('should not fail on a non existing --libs ', function(done) {
+    it('should fail on a non existing --libs ', function(done) {
       var opts = { outputFile: outputFile, skipNodeInclude: true , libs: [ '/blabla']};
       var bashPack = new BashPack(opts);
       var baseDir = path.join(__dirname,'data','hello-world');
@@ -119,6 +119,22 @@ describe('BashPack', function () {
 
       bashPack.build(baseDir, startScript, opts, function(err) {
         expect(err).not.to.be(null)
+        done();
+      });
+    })
+
+    it('should not fail on a xisting --libs ', function(done) {
+      var baseDir = path.join(__dirname,'data','hello-world');
+      var extraLib = path.join(__dirname,'data','lib','dummylib.so');
+      var opts = { outputFile: outputFile, skipNodeInclude: true , libs: [ extraLib]};
+      var bashPack = new BashPack(opts);
+      var startScript = 'lib/hello.js';
+
+      bashPack.build(baseDir, startScript, opts, function(err) {
+        expect(err).to.be(null)
+        var results = shell.exec(outputFile + ' --bashpack-list');
+        expect(results.code).to.be(0);
+        expect(results.output).contain('lib/dummylib.so');
         done();
       });
     })
