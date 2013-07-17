@@ -123,7 +123,7 @@ describe('BashPack', function () {
       });
     })
 
-    it('should not fail on a xisting --libs ', function(done) {
+    it('should not fail on a existing --libs ', function(done) {
       var baseDir = path.join(__dirname,'data','hello-world');
       var extraLib = path.join(__dirname,'data','lib','dummylib.so');
       var opts = { outputFile: outputFile, skipNodeInclude: true , libs: [ extraLib]};
