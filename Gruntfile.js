@@ -13,6 +13,8 @@ module.exports = function(grunt) {
           node: true,
           curly: true,
           quotmark: 'single',
+          unused: true,
+          strict: true,
           undef: true
         }
       },
@@ -24,7 +26,7 @@ module.exports = function(grunt) {
           node: true,
           curly: true,
           quotmark: 'single',
-          undef: false
+          undef: false,
         }
       },
       gruntfile: {

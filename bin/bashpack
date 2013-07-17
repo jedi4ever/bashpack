@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 // vim: ft=javascript
+//
+'use strict';
 
 var program = require('commander');
 var cli = require('../lib/cli.js');
