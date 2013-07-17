@@ -90,6 +90,23 @@ describe('BashPack', function () {
 
       bashPack.build(baseDir, startScript, opts, function(err) {
         expect(err).to.be(null)
+        var results = shell.exec(outputFile + ' --bashpack-list');
+        expect(results.code).to.be(0);
+        done();
+      });
+    })
+
+    it('should not include the "doc" dir on hello-world with --exclude "./doc/*"', function(done) {
+      var opts = { outputFile: outputFile, logMute: false, logLevel: 'debug', skipNodeInclude: true , exclude: [ './doc/*' ]};
+      var bashPack = new BashPack(opts);
+      var baseDir = path.join(__dirname,'data','hello-world');
+      var startScript = 'lib/hello.js';
+
+      bashPack.build(baseDir, startScript, opts, function(err) {
+        expect(err).to.be(null)
+        var results = shell.exec(outputFile + ' --bashpack-list');
+        expect(results.code).to.be(0);
+        expect(results.output).not.to.contain('doc');
         done();
       });
     })
