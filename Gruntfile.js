@@ -10,7 +10,9 @@ module.exports = function(grunt) {
           src: ['lib/**/*.js', 'test/**/*.js']
         },
         options: {
-          node: true
+          node: true,
+          curly: true,
+          quotmark: 'single'
         }
       },
       gruntfile: {
