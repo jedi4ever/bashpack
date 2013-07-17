@@ -5,7 +5,7 @@
   "author": "Patrick Debois <patrick.debois@jedi.be>",
   "description": "packs a nodejs project into a single bash file",
   "scripts": {
-    "test": "make MOCHA=mocha JSHINT=jshint test"
+    "test": "grunt test"
   },
   "main": "./lib/bashpack.js",
   "bin": {
@@ -36,7 +36,9 @@
     "assert": "*",
     "expect.js": "*",
     "should": "0.5.1",
-    "grunt": "*"
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.6.0",
+    "grunt-contrib-watch": "~0.4.4"
   },
   "license": "MIT",
   "engine": {

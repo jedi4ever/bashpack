@@ -1,0 +1,52 @@
+module.exports = function(grunt) {
+
+  // Project configuration.
+  grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json'),
+    jshint: {
+      // define the files to lint
+      files: ['gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
+      // configure JSHint (documented at http://www.jshint.com/docs/)
+      options: {
+        // more options here if you want to override JSHint defaults
+        globals: {
+          jQuery: true,
+          console: true,
+          module: true
+        }
+      }
+    },
+    // Configure a mochaTest task
+    mochaTest: {
+      test: {
+        options: {
+          reporter: 'dot',
+          require: 'coverage/blanket'
+        },
+        src: ['test/**/*.js']
+      },
+      coverage: {
+        options: {
+          reporter: 'html-cov',
+          // use the quiet flag to suppress the mocha console output
+          quiet: true
+        },
+        src: ['test/**/*.js'],
+        // specify a destination file to capture the mocha
+        // output (the quiet option does not suppress this)
+        dest: 'coverage.html'
+      }
+    }
+  });
+
+  // Load the plugin that provides the "uglify" task.
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-mocha-test');
+
+  grunt.registerTask('test', ['jshint','mochaTest']);
+
+  // Default task(s).
+  grunt.registerTask('default', ['jshint']);
+
+};
