@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>cli.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="bashpack.html">
+                bashpack.js
+              </a>
+            
+              
+              <a class="source" href="cli.html">
+                cli.js
+              </a>
+            
+              
+              <a class="source" href="logger.html">
+                logger.js
+              </a>
+            
+              
+              <a class="source" href="merge.html">
+                merge.js
+              </a>
+            
+              
+              <a class="source" href="version.html">
+                version.js
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>cli.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="string">'use strict'</span>;
+
+<span class="keyword">var</span> merge = require(<span class="string">'./utils/merge'</span>);
+
+<span class="keyword">var</span> BashPack = require(<span class="string">'./bashpack'</span>);
+
+<span class="keyword">var</span> bashPackBuild = <span class="function"><span class="keyword">function</span> <span class="title">bashPackBuild</span><span class="params">(projectDir, startScript, options)</span> {</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>By default we show all output</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="keyword">var</span> defaults = {
+    logMute: <span class="literal">false</span>,
+    logTimestamp: <span class="literal">false</span>
+  };
+
+  <span class="keyword">var</span> settings = merge(defaults, options);
+
+  <span class="keyword">if</span> (options.debug) {
+    settings.logLevel = <span class="string">'debug'</span>;
+  }
+
+  <span class="keyword">var</span> logger = require(<span class="string">'./utils/logger'</span>)(settings);
+  logger.info(<span class="string">'Starting the bashpack creation'</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Show errors in case we have some</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="keyword">var</span> catchErrors = <span class="keyword">function</span>(err) {
+    <span class="keyword">if</span> (err) {
+      logger.error(err.message);
+      process.exit(-<span class="number">1</span>);
+    } <span class="keyword">else</span> {
+      logger.info(<span class="string">'bashpack successfully created!'</span>);
+      logger.info(<span class="string">'Thank you for trying bashpack'</span>);
+    }
+  };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Initialize main object</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="keyword">var</span> bashPack = <span class="keyword">new</span> BashPack(settings);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Initiate the build process</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  bashPack.build(projectDir, startScript, settings, catchErrors);
+};
+
+<span class="keyword">var</span> bashPackInit = <span class="function"><span class="keyword">function</span> <span class="title">bashPackInit</span><span class="params">(projectDir, options)</span> {</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>By default we show all output</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="keyword">var</span> defaults = {
+    logMute: <span class="literal">false</span>,
+    logTimestamp: <span class="literal">false</span>
+  };
+
+  <span class="keyword">var</span> settings = merge(defaults, options);
+
+  <span class="keyword">if</span> (options.debug) {
+    settings.logLevel = <span class="string">'debug'</span>;
+  }
+
+  <span class="keyword">var</span> logger = require(<span class="string">'./utils/logger'</span>)(settings);
+  logger.info(<span class="string">'Initializing bashpack project'</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>Show errors in case we have some</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="keyword">var</span> catchErrors = <span class="keyword">function</span>(err) {
+    <span class="keyword">if</span> (err) {
+      logger.error(err.message);
+      process.exit(-<span class="number">1</span>);
+    } <span class="keyword">else</span> {
+      logger.info(<span class="string">'bashpack successfully created!'</span>);
+      logger.info(<span class="string">'Thank you for trying bashpack'</span>);
+    }
+  };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>Initialize main object</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="keyword">var</span> bashPack = <span class="keyword">new</span> BashPack(settings);
+  bashPack.init(projectDir,options,catchErrors);
+
+};
+
+module.exports = {
+  build: bashPackBuild,
+  init: bashPackInit
+};</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

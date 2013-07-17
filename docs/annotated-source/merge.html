@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>merge.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="bashpack.html">
+                bashpack.js
+              </a>
+            
+              
+              <a class="source" href="cli.html">
+                cli.js
+              </a>
+            
+              
+              <a class="source" href="logger.html">
+                logger.js
+              </a>
+            
+              
+              <a class="source" href="merge.html">
+                merge.js
+              </a>
+            
+              
+              <a class="source" href="version.html">
+                version.js
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>merge.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="string">'use strict'</span>;
+
+<span class="keyword">var</span> merge = <span class="keyword">function</span>() {
+  <span class="keyword">var</span> obj = {},
+  i = <span class="number">0</span>,
+  il = arguments.length,
+  key;
+  <span class="keyword">if</span> (il === <span class="number">0</span>) {
+    <span class="keyword">return</span> obj;
+  }
+  <span class="keyword">for</span> (; i &lt; il; i++) {
+    <span class="keyword">for</span> (key <span class="keyword">in</span> arguments[i]) {
+      <span class="keyword">if</span> (arguments[i].hasOwnProperty(key)) {
+        obj[key] = arguments[i][key];
+      }
+    }
+  }
+  <span class="keyword">return</span> obj;
+};
+
+module.exports = merge;</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

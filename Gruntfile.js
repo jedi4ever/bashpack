@@ -32,7 +32,7 @@ module.exports = function(grunt) {
       },
       gruntfile: {
         files: {
-         src: ['Gruntfile.js']
+          src: ['Gruntfile.js']
         }
       },
     },
@@ -59,17 +59,25 @@ module.exports = function(grunt) {
     },
 
     watch: {
-        gruntfile: {
-          files: 'Gruntfile.js' ,
-          tasks: ['jshint:gruntfile']
-        },
-        src: {
-          files: ['lib/**/*.js','bin/*','test/**/*.js'],
-          tasks: ['test']
-        },
+      gruntfile: {
+        files: 'Gruntfile.js' ,
+        tasks: ['jshint:gruntfile']
+      },
+      src: {
+        files: ['lib/**/*.js','bin/*','test/**/*.js'],
+        tasks: ['test']
+      },
+      options: {
+        nospawn: false
+      }
+    },
+    docco: {
+      docs: {
+        src: ['lib/**/*.js'],
         options: {
-          nospawn: false
+          output: 'docs/annotated-source'
         }
+      }
     }
   });
 
@@ -78,6 +86,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-release');
+  grunt.loadNpmTasks('grunt-docco2');
 
   grunt.registerTask('test', ['jshint','mochaTest']);
 
