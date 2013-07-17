@@ -97,7 +97,7 @@ describe('BashPack', function () {
     })
 
     it('should not include the "doc" dir on hello-world with --exclude "./doc/*"', function(done) {
-      var opts = { outputFile: outputFile, logMute: false, logLevel: 'debug', skipNodeInclude: true , exclude: [ './doc/*' ]};
+      var opts = { outputFile: outputFile, skipNodeInclude: true , exclude: [ './doc/*' ]};
       var bashPack = new BashPack(opts);
       var baseDir = path.join(__dirname,'data','hello-world');
       var startScript = 'lib/hello.js';
