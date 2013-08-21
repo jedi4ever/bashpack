@@ -188,6 +188,7 @@ Also it can not guess the additional shared libs your application was compiled a
 Makeself - <https://github.com/megastep/makeself>
 
 Tweaks made:
+
 - fix for md5 to work
 - prefix the archive options (info, list, check) with --bashpack-
 - pass all arguments directly to script that is started
