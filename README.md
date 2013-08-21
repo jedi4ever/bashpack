@@ -88,6 +88,31 @@ This is how we would create a bashpack from the statsd project
       }
     });
 
+## Build Options/Defaults
+
+```js
+  // The overall defaults if not specified
+  var _defaults = {
+    logMute: true, // no output by default
+    logLevel: 'info',
+    logTimestamp: false,
+    logPrettyPrint: false,
+    includeNode: true,
+    exclude: [ '.git/*','doc/*','test/*' ],
+    name: 'the anonymous module',
+    outputFile: ['bashpack' , process.platform , process.arch].join('-') + '.run',
+    configName: 'bashpack.json',
+    libs: undefined,          // Array of native libs to add and load
+    force: false,             // overwrite Bashpack outputFile
+    excludeFile: undefined ,  // no exclude file speficied
+    node: {
+      platform: process.platform, // darwin, linux, sunos
+      arch: process.arch,         // x86 | x64
+      version: 'system'           // system, latest, 0.10.x..
+    },
+    nodeBinary: undefined     // Override node file used
+```
+
 ## bashpack run files options
 A bashpack file, is a shell script, with a payload.
 As the payload is bzip2-ed, they are small compared to the node-binary size.
@@ -146,6 +171,8 @@ Also it can not guess the additional shared libs your application was compiled a
 - windows is currently not supported
 
 ## Todos/Ideas
+- build a bashpack from a GIT repo or NPM Tarball
+- bashpackignore syntax to be similar from gitignore & npmignore
 
 - report error if bashpack is run on the wrong architecture
 - integrate .bashpack-ignore in package.json
@@ -153,9 +180,8 @@ Also it can not guess the additional shared libs your application was compiled a
 
 - include DYLIBS in bashpack
 
-- bashpackignore syntax to be similar from gitignore & npmignore
-
 - multi architecture bashpacks : by including multiple nodejs binaries in the bashpack and selecting the correct one
+
 
 ## Inspired by
 
