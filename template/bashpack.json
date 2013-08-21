@@ -10,6 +10,7 @@
     "LICENSE",
     "README.*",
     "README",
+    ".DS_Store",
     "Changelog.md",
     "CHANGELOG.md",
     ".travis.yml",

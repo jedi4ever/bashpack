@@ -1,10 +1,13 @@
 var BashPack = require('../lib/bashpack');
+var longjohn = require('longjohn');
 var path = require('path');
-var Tempfile = require('temporary/lib/file');
-var tempFile = new Tempfile();
 var fs = require('fs');
-var shell = require('shelljs');
 var expect = require('expect.js');
+
+var shell = require('shelljs');
+shell.silent = true;
+
+var temp = require('temp');
 
 describe('BashPack', function () {
 
@@ -14,15 +17,11 @@ describe('BashPack', function () {
   var outputFile;
 
   beforeEach(function(done) {
-    outputFile = tempFile.path;
-    done();
+      outputFile = temp.path();
+      done();
   });
 
   afterEach(function(done) {
-    // Cleanup our temporary file after creation
-    if (fs.existsSync(outputFile)) {
-      tempFile.unlinkSync();
-    }
     done();
   });
 
@@ -98,7 +97,7 @@ describe('BashPack', function () {
 
       bashPack.build(baseDir, startScript, opts, function(err) {
         expect(err).to.be(null);
-        var results = shell.exec(outputFile + ' --bashpack-list');
+        var results = shell.exec(outputFile + ' --bashpack-list', { silent: true});
         expect(results.code).to.be(0);
         done();
       });
@@ -112,7 +111,7 @@ describe('BashPack', function () {
 
       bashPack.build(baseDir, startScript, opts, function(err) {
         expect(err).to.be(null);
-        var results = shell.exec(outputFile + ' --bashpack-list');
+        var results = shell.exec(outputFile + ' --bashpack-list', { silent: true});
         expect(results.code).to.be(0);
         expect(results.output).not.to.contain('doc');
         done();
@@ -140,7 +139,7 @@ describe('BashPack', function () {
 
       bashPack.build(baseDir, startScript, opts, function(err) {
         expect(err).to.be(null);
-        var results = shell.exec(outputFile + ' --bashpack-list');
+        var results = shell.exec(outputFile + ' --bashpack-list', {silent: true});
         expect(results.code).to.be(0);
         expect(results.output).contain('lib/dummylib.so');
         done();
@@ -155,7 +154,7 @@ describe('BashPack', function () {
 
       bashPack.build(baseDir, startScript, opts, function(err) {
         expect(err).to.be(null);
-        var results = shell.exec(outputFile);
+        var results = shell.exec(outputFile, {silent: true});
         expect(results.code).to.be(0);
         expect(results.output).contain(startScript);
         done();

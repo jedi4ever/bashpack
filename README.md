@@ -76,10 +76,15 @@ This is how we would create a bashpack from the statsd project
     var bashPack = new BashPack();
     var projectDir = '.';
     var startScript = 'bin/statsd';
+    var options = {
+      outputFile: 'mybashpack.run'
+    };
 
-    bashPack.build(projectDir, startScript, function(err) {
+    bashPack.build(projectDir, startScript, options, function(err, filename) {
       if (err) {
         console.log('error happened:'+ err.message);
+      } else {
+        console.log('created bashpack '+ filename);
       }
     });
 
@@ -145,18 +150,10 @@ Also it can not guess the additional shared libs your application was compiled a
 - report error if bashpack is run on the wrong architecture
 - integrate .bashpack-ignore in package.json
 - ability to pass nodejs options
-- grunt plugin
 
 - include DYLIBS in bashpack
 
-- guess the startScript from the main in the package.json
-- guess the archive name from the module description
 - bashpackignore syntax to be similar from gitignore & npmignore
-
-- auto-build backfrom from npm (download, install --production, dedupe, bashpack)
-- copy baseDir first and rebuild it from a clean node_modules dir
-
-- auto-download nodejs binary/arch/version/etc to be included
 
 - multi architecture bashpacks : by including multiple nodejs binaries in the bashpack and selecting the correct one
 

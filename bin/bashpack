@@ -34,7 +34,7 @@ program.command('build <projectdir> <startscript>')
   .option('-l, --libs <pattern>', 'Shared libraries to include []',[])
   .option('-X, --exclude-file <excludefile>','File that contains the (shell)patterns to exclude')
   .option('-s, --skip-node-include','Don\'t include a node binary in the bashpack')
-  .option('-b, --node-binary <node-filename>','File path to node binary [auto-detect from path]')
+  .option('-b, --node-binary <node-filename>','File path to node binary')
   .option('-c, --config-file <config-filename>','JSON File containing bashpack settings [auto-detect from $projectdir/bashpack.json]')
   .action(function(projectdir,startscript,options) {
     cli.build(projectdir,startscript,options);
