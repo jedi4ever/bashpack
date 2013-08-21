@@ -28,7 +28,8 @@
     "async": "~0.2.9",
     "temp": "~0.5.1",
     "ncp": "~0.4.2",
-    "hashmerge": "~1.0.2"
+    "hashmerge": "~1.0.2",
+    "minimatch": "~0.2.12"
   },
   "devDependencies": {
     "mocha": "*",
