@@ -3,7 +3,7 @@ var path = require('path');
 var fs = require('fs');
 var expect = require('expect.js');
 
-var realTimeout = process.env.TRAVIS ? 12000 : 4000 ;
+var realTimeout = (process.env.TRAVIS || process.env.CIRCLECI) ? 12000 : 9000 ;
 
 describe.skip('BashPack Self', function () {
 

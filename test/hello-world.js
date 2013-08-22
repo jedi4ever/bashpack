@@ -7,7 +7,7 @@ var expect = require('expect.js');
 var shell = require('shelljs');
 shell.silent = true;
 
-var realTimeout = process.env.TRAVIS ? 12000 : 4000 ;
+var realTimeout = (process.env.TRAVIS || process.env.CIRCLECI) ? 12000 : 9000 ;
 
 var temp = require('temp');
 
