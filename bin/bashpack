@@ -38,11 +38,11 @@ program.command('build <projectdir> <startscript>')
   .option('-c, --config-file <config-filename>','JSON File containing bashpack settings [auto-detect from $projectdir/bashpack.json]')
   .action(function(projectdir,startscript,options) {
     cli.build(projectdir,startscript,options);
-    process.exit(0);
   });
 
 program.parse(process.argv);
 
+/*
 if (!program.args.length) {
   program.help();
 } else {
@@ -53,3 +53,4 @@ if (!program.args.length) {
 }
 
 
+*/
