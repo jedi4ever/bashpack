@@ -111,6 +111,11 @@ This is how we would create a bashpack from the statsd project
   };
 ```
 
+## ignore files
+
+Bashpack reads packIgnores from: `.gitignore`, `.npmignore`, `.bashpackignore`
+The file **override** the ignores, they do NOT merge
+
 ## bashpack run files options
 A bashpack file, is a shell script, with a payload.
 As the payload is bzip2-ed, they are small compared to the node-binary size.
@@ -170,7 +175,6 @@ Also it can not guess the additional shared libs your application was compiled a
 
 ## Todos/Ideas
 - build a bashpack from a GIT repo or NPM Tarball
-- bashpackignore syntax to be similar from gitignore & npmignore
 
 - report error if bashpack is run on the wrong architecture
 - ability to pass nodejs options
