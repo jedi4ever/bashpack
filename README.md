@@ -7,7 +7,7 @@ It will include the nodejs binary to be executed
 
 ## Installation:
 
-    $ npm install bashpack
+    $ npm install -g bashpack
 
 ## CLI options
 
@@ -26,26 +26,33 @@ It will include the nodejs binary to be executed
 
     $ ./bin/bashpack  build --help
 
-    Usage: build [options] <projectdir>,<startscript>
+      Usage: build [options] <projectdir>,<startscript>
 
-    Options:
+      Options:
 
-      -h, --help                         output usage information
-      --log-level <loglevel>             Set loglevel [info]
-      --log-timestamp                    Enable timestamps in log-output
-      --no-log-colorize                  Disable colors in log-output
-      --no-log-pretty-print              Disable pretty-print log-output
-      -m, --log-mute                     Disable log-output
-      -d, --debug                        Enable debug level
-      -o, --output-file <outputfile>     Outputfile [bashpack.run]
-      -f, --force                        Force overwrite
-      -e, --exclude <patterns>           Pattern to exclude ['.git/*']
-      -l, --libs <pattern>               Shared libraries to include []
-      -X, --exclude-file <excludefile>   File that contains the (shell)patterns to exclude
-      -s, --skip-node-include            Don't include a node binary in the bashpack
-      -b, --node-binary <node-filename>  File path to node binary [auto-detect from path]
+        -h, --help                           output usage information
+        --log-level <loglevel>               Set loglevel [info]
+        --log-timestamp                      Enable timestamps in log-output
+        --no-log-colorize                    Disable colors in log-output
+        --no-log-pretty-print                Disable pretty-print log-output
+        -m, --log-mute                       Disable log-output
+        -d, --debug                          Enable debug level
+        -o, --output-file <outputfile>       Outputfile [bashpack.run]
+        -f, --force                          Force overwrite
+        -e, --exclude <patterns>             Pattern to exclude ['.git/*']
+        -l, --libs <pattern>                 Shared libraries to include []
+        -X, --exclude-file <excludefile>     File that contains the patterns to exclude [auto-detect from $projectdir/{.gitignore, .npmignore, .bashpackignore
+        -s, --skip-node-include              Don't include a node binary in the bashpack
+        -b, --node-binary <node-filename>    File path to node binary
+        --node-version <node-version>        Node version to include. Use system|latest|va.b.c [system]
+        --node-platform <node-platform>      Node platform to download. darwin|linux|sunos [darwin]
+        --node-arch <node-arch>              Node arch to download. x86|x64 [x64]
+        -c, --config-file <config-filename>  JSON File containing bashpack settings [auto-detect from $projectdir/bashpack.json]
 
-By default it includes a node-binary in your bashpack.run file, if you want to avoid that use the --skip-node-include option
+By default it includes your 'system' node-binary in your bashpack.run file.
+If you specify a `node-version` it will download the node-binary from `http://nodejs.org/download`
+
+If you want to avoid the inclusion of a node-binary use the `--skip-node-include` option
 
 ## Sample CLI usage
 
@@ -157,7 +164,6 @@ In addition to that, the bashpack also responds to some internal commands (prefi
 
 ### Dependencies
 
-- to pack a node binary in the bashpack file, it needs to be available in your path , or specified by hand with --node-binary option
 - the bashpack.run file uses uuencode, bzip2 , tar . These need to be in your path when running the bashpack.run file
 
 ### Native modules
@@ -176,6 +182,7 @@ Also it can not guess the additional shared libs your application was compiled a
 ## Todos/Ideas
 - build a bashpack from a GIT repo or NPM Tarball
 
+- report warning  if packing on a different architecture
 - report error if bashpack is run on the wrong architecture
 - ability to pass nodejs options
 
