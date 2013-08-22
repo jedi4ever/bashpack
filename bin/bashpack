@@ -35,6 +35,9 @@ program.command('build <projectdir> <startscript>')
   .option('-X, --exclude-file <excludefile>','File that contains the patterns to exclude [auto-detect from $projectdir/{.gitignore, .npmignore, .bashpackignore')
   .option('-s, --skip-node-include','Don\'t include a node binary in the bashpack')
   .option('-b, --node-binary <node-filename>','File path to node binary')
+  .option('--node-version <node-version>','Node version to include. Use system|latest|va.b.c [system]')
+  .option('--node-platform <node-platform>','Node platform to download. darwin|linux|sunos [' + process.platform + ']')
+  .option('--node-arch <node-arch>','Node arch to download. x86|x64 [' + process.arch + ']')
   .option('-c, --config-file <config-filename>','JSON File containing bashpack settings [auto-detect from $projectdir/bashpack.json]')
   .action(function(projectdir,startscript,options) {
     cli.build(projectdir,startscript,options);
@@ -42,15 +45,14 @@ program.command('build <projectdir> <startscript>')
 
 program.parse(process.argv);
 
-/*
 if (!program.args.length) {
   program.help();
 } else {
   var subcommands = [ 'build', 'init' , 'version' ];
-  if (subcommands.indexOf(program.args) < 0) {
+  if (!program.args.some(function(value) {
+    return subcommands.indexOf(value) > 0
+  })) {
+    console.log('Unknown command specified');
     program.help();
   }
 }
-
-
-*/
