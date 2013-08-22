@@ -91,7 +91,6 @@ This is how we would create a bashpack from the statsd project
 ## Build Options/Defaults
 
 ```js
-  // The overall defaults if not specified
   var _defaults = {
     logMute: true, // no output by default
     logLevel: 'info',
@@ -105,12 +104,11 @@ This is how we would create a bashpack from the statsd project
     libs: undefined,          // Array of native libs to add and load
     force: false,             // overwrite Bashpack outputFile
     excludeFile: undefined ,  // no exclude file speficied
-    node: {
-      platform: process.platform, // darwin, linux, sunos
-      arch: process.arch,         // x86 | x64
-      version: 'system'           // system, latest, 0.10.x..
-    },
+    nodePlatform: process.platform, // darwin, linux, sunos
+    nodeArch: process.arch,         // x86 | x64
+    nodeVersion: 'system',           // system, latest, 0.10.x..
     nodeBinary: undefined     // Override node file used
+  };
 ```
 
 ## bashpack run files options

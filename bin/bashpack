@@ -50,7 +50,7 @@ if (!program.args.length) {
 } else {
   var subcommands = [ 'build', 'init' , 'version' ];
   if (!program.args.some(function(value) {
-    return subcommands.indexOf(value) > 0
+    return (subcommands.indexOf(value) > 0);
   })) {
     console.log('Unknown command specified');
     program.help();
