@@ -3,10 +3,12 @@ var path = require('path');
 var fs = require('fs');
 var expect = require('expect.js');
 
+var realTimeout = process.env.TRAVIS ? 12000 : 4000 ;
+
 describe.skip('BashPack Self', function () {
 
   // Packing can take a long time
-  this.timeout(4000);
+  this.timeout(realTimeout);
 
   var outputFile;
 
@@ -20,7 +22,6 @@ describe.skip('BashPack Self', function () {
 
 
   it('should work on ourselves', function(done) {
-    this.timeout(30000);
     var bashPack = new BashPack({ force: true});
     var baseDir = path.join(__dirname, '..');
     var startScript = './bin/bashpack';

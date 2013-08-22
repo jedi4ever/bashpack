@@ -7,14 +7,15 @@ var expect = require('expect.js');
 var shell = require('shelljs');
 shell.silent = true;
 
+var realTimeout = process.env.TRAVIS ? 12000 : 4000 ;
+
 var temp = require('temp');
 
 describe('BashPack', function () {
 
-  // Packing can take a long time
-  this.timeout(4000);
-
   var outputFile;
+
+  this.timeout(realTimeout);
 
   beforeEach(function(done) {
       outputFile = temp.path();
