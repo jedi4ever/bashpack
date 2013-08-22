@@ -41,7 +41,7 @@ It will include the nodejs binary to be executed
         -f, --force                          Force overwrite
         -e, --exclude <patterns>             Pattern to exclude ['.git/*']
         -l, --libs <pattern>                 Shared libraries to include []
-        -X, --exclude-file <excludefile>     File that contains the patterns to exclude [auto-detect from $projectdir/{.gitignore, .npmignore, .bashpackignore
+        -X, --exclude-file <excludefile>     File that contains the patterns to exclude [auto-detect from $projectdir/{.gitignore, .npmignore, .bashpackignore}]
         -s, --skip-node-include              Don't include a node binary in the bashpack
         -b, --node-binary <node-filename>    File path to node binary
         --node-version <node-version>        Node version to include. Use system|latest|va.b.c [system]
