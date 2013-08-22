@@ -4,3 +4,4 @@ coverage/*
 coverage.html
 Gruntfile.js
 .travis.yml
+*.run

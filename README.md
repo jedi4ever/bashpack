@@ -173,7 +173,6 @@ Also it can not guess the additional shared libs your application was compiled a
 - bashpackignore syntax to be similar from gitignore & npmignore
 
 - report error if bashpack is run on the wrong architecture
-- integrate .bashpack-ignore in package.json
 - ability to pass nodejs options
 
 - include DYLIBS in bashpack

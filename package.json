@@ -29,7 +29,7 @@
     "temp": "~0.5.1",
     "ncp": "~0.4.2",
     "hashmerge": "~1.0.2",
-    "minimatch": "~0.2.12"
+    "fstream-ignore": "0.0.7"
   },
   "devDependencies": {
     "mocha": "*",

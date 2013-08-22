@@ -73,7 +73,7 @@ describe('BashPack', function () {
 
       bashPack.build(baseDir, startScript, opts, function(err) {
         expect(err).to.be(null);
-        done();
+        done(err);
       });
     });
 
