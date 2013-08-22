@@ -43,16 +43,14 @@ program.command('build <projectdir> <startscript>')
     cli.build(projectdir,startscript,options);
   });
 
-program.parse(process.argv);
+ program.command('*')
+   .action(function(env){
+    console.log('Unknown command ' + env);
+    program.help();
+ });
+
+ program.parse(process.argv);
 
 if (!program.args.length) {
   program.help();
-} else {
-  var subcommands = [ 'build', 'init' , 'version' ];
-  if (!program.args.some(function(value) {
-    return (subcommands.indexOf(value) > 0);
-  })) {
-    console.log('Unknown command specified');
-    program.help();
-  }
 }
