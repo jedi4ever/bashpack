@@ -5,7 +5,7 @@ var expect = require('expect.js');
 
 var realTimeout = (process.env.TRAVIS || process.env.CIRCLECI) ? 12000 : 9000 ;
 
-describe('BashPack Self', function () {
+describe.skip('BashPack Self', function () {
 
   // Packing can take a long time
   this.timeout(realTimeout);
