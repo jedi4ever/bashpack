@@ -182,8 +182,6 @@ Also it can not guess the additional shared libs your application was compiled a
 ## Todos/Ideas
 - build a bashpack from a GIT repo or NPM Tarball
 
-- report warning  if packing on a different architecture
-- report error if bashpack is run on the wrong architecture
 - ability to pass nodejs options
 
 - include DYLIBS in bashpack
