@@ -15,9 +15,14 @@ function list(val) {
 
 program.command('init <projectdir>')
   .option('-f, --force','Force overwrite')
+  .option('--log-level <loglevel>','Set loglevel [info]')
+  .option('--log-timestamp','Enable timestamps in log-output')
+  .option('--no-log-colorize','Disable colors in log-output')
+  .option('--no-log-pretty-print','Disable pretty-print log-output')
+  .option('-m, --log-mute','Disable log-output')
+  .option('-d, --debug','Enable debug level')
   .action(function(projectdir,options) {
     cli.init(projectdir,options);
-    process.exit(0);
   });
 
 

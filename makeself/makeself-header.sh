@@ -1,10 +1,9 @@
-startdir=`pwd`
 cat << EOF  > "$archname"
 #!/bin/sh
 # This script was generated using Makeself $MS_VERSION
 
 
-startdir="$startdir"
+startdir=\${PWD}
 
 CRCsum="$CRCsum"
 MD5="$MD5sum"
